@@ -1,15 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
+import { Container, Icon, Stack } from "@chakra-ui/react";
+import { FiArrowLeft } from "react-icons/fi";
+import { Link } from "@chakra-ui/next-js";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { asyncReceiveDetailThread, clearDetailThreadActionCreator } from "@/states/detailThread/action";
-import { useEffect } from "react";
 import DetailThread from "./ui/DetailThread";
-import { Container, Icon, Stack } from "@chakra-ui/react";
 import FormComment from "./ui/FormComment";
 import CommentsList from "./ui/CommentsList";
-import { Link } from "@chakra-ui/next-js";
-import { FiArrowLeft } from "react-icons/fi";
 
 const DetailPage = ({ params }: { params: { id: string } }) => {
   const detailThread: DetailThread = useAppSelector((states) => states.detailThread);
@@ -21,7 +21,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
     return () => {
       dispatch(clearDetailThreadActionCreator());
     };
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   if (!detailThread) return null;
 

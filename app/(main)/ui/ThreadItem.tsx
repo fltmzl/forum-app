@@ -1,11 +1,11 @@
-import { timeAgo } from "@/utils/common";
-import { Avatar, Badge, Box, Button, Flex, HStack, Heading, Icon, Text } from "@chakra-ui/react";
+import { Avatar, Badge, Box, Flex, HStack, Heading, Icon, Text } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import { LiaCommentAlt } from "react-icons/lia";
+import { timeAgo } from "@/utils/common";
 import UpVoteButton from "@/components/common/UpVoteButton";
 import DownVoteButton from "@/components/common/DownVoteButton";
 
-const ThreadItem = ({ id, title, category, body, owner, createdAt, downVotesBy, upVotesBy, totalComments }: ThreadItem) => {
+const ThreadItem = ({ id, title, category, body, owner, createdAt, totalComments }: ThreadItem) => {
   return (
     <Box mb="5" bg="gray.700" maxW="container.md" rounded="2xl" p="5">
       <Heading size="md" mb="3">

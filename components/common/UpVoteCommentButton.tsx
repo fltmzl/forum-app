@@ -2,39 +2,39 @@ import { Flex, IconButton, Text, Tooltip } from "@chakra-ui/react";
 import { BiLike, BiSolidLike } from "react-icons/bi";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { asyncNeutralVoteThread, asyncUpVoteThread } from "@/states/threads/action";
+import { asyncNeutralVoteCommentDetailThread, asyncUpVoteCommentDetailThread } from "@/states/detailThread/action";
 
-type IUpVoteButtonProps = {
-  threadId: string;
+type IUpVoteCommentButtonProps = {
+  commentId: string;
 };
 
-const UpVoteButton = ({ threadId }: IUpVoteButtonProps) => {
-  const threads: Thread[] = useAppSelector((states) => states.threads);
+const UpVoteCommentButton = ({ commentId }: IUpVoteCommentButtonProps) => {
+  const thread: DetailThread = useAppSelector((states) => states.detailThread);
   const authUser: User = useAppSelector((states) => states.authUser);
   const dispatch = useAppDispatch();
 
-  const currentThread = threads.find((thread) => thread.id === threadId);
+  const currentComment = thread.comments.find((comment) => comment.id === commentId);
 
   const handleUpVoteThread = () => {
-    dispatch(asyncUpVoteThread(threadId));
+    dispatch(asyncUpVoteCommentDetailThread({ commentId, threadId: thread.id }));
   };
 
   const handleUnUpVoteThread = () => {
-    dispatch(asyncNeutralVoteThread(threadId));
+    dispatch(asyncNeutralVoteCommentDetailThread({ commentId, threadId: thread.id }));
   };
 
   return (
     <Flex alignItems="center">
       <Tooltip label="Up Vote" fontSize="xs" placement="top">
-        {currentThread?.upVotesBy.includes(authUser.id) ? (
+        {currentComment?.upVotesBy.includes(authUser.id) ? (
           <IconButton isRound icon={<BiSolidLike />} aria-label="Up Vote Thread" bgColor="transparent" fontSize="xl" onClick={handleUnUpVoteThread} textColor="primary.500" />
         ) : (
           <IconButton isRound icon={<BiLike />} aria-label="Up Vote Thread" bgColor="transparent" fontSize="xl" onClick={handleUpVoteThread} />
         )}
       </Tooltip>
-      <Text fontSize="md">{currentThread?.upVotesBy.length}</Text>
+      <Text fontSize="md">{currentComment?.upVotesBy.length}</Text>
     </Flex>
   );
 };
 
-export default UpVoteButton;
+export default UpVoteCommentButton;

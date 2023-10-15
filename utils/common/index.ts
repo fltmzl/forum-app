@@ -5,30 +5,35 @@ export const timeAgo = (date: Date) => {
 
   let interval = Math.floor(seconds / 31536000);
   if (interval > 1) {
-    return interval + " tahun yang lalu";
+    return `${interval} tahun yang lalu`;
   }
 
   interval = Math.floor(seconds / 2592000);
   if (interval > 1) {
-    return interval + " bulan yang lalu";
+    return `${interval} bulan yang lalu`;
   }
 
   interval = Math.floor(seconds / 86400);
   if (interval > 1) {
-    return interval + " hari yang lalu";
+    return `${interval} hari yang lalu`;
   }
 
   interval = Math.floor(seconds / 3600);
   if (interval > 1) {
-    return interval + " jam yang lalu";
+    return `${interval} jam yang lalu`;
   }
 
   interval = Math.floor(seconds / 60);
   if (interval > 1) {
-    return interval + " menit yang lalu";
+    return `${interval} menit yang lalu`;
   }
 
   if (seconds < 10) return "Baru saja";
 
-  return Math.floor(seconds) + " detik yang lalu";
+  return `${Math.floor(seconds)} detik yang lalu`;
+};
+
+export const getCategoriesFromAllThread = (threads: Thread[]) => {
+  const categories = threads.map((thread) => thread.category);
+  return categories;
 };

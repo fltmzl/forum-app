@@ -1,15 +1,14 @@
 "use client";
 
-import PrimaryButton from "@/components/common/PrimaryButton";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import useInput from "@/hooks/useInput";
-import { asyncAddThread } from "@/states/threads/action";
+import { useRouter } from "next/navigation";
 import { Avatar, Grid, GridItem, Input, Stack, Textarea } from "@chakra-ui/react";
 import { AiOutlinePlus } from "react-icons/ai";
 import React, { useState } from "react";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import useInput from "@/hooks/useInput";
+import PrimaryButton from "@/components/common/PrimaryButton";
+import { asyncAddThread } from "@/states/threads/action";
 
 const FormThread = () => {
   const authUser: User = useAppSelector((states) => states.authUser);
@@ -26,13 +25,7 @@ const FormThread = () => {
   const handleCreateThread = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(
-      asyncAddThread({
-        body,
-        title,
-        category,
-      })
-    );
+    dispatch(asyncAddThread({ body, title, category }));
 
     router.push("/");
   };

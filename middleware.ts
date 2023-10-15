@@ -13,8 +13,9 @@ export async function middleware(request: NextRequest) {
     if (user) return NextResponse.redirect(new URL("/", request.url));
   }
 
+  // eslint-disable-next-line no-shadow
   const shouldRedirectToLogin = (pathname: string, user: any) => {
-    return (pathname === "/" || pathname.startsWith("/threads") || pathname.startsWith("/new")) && !user;
+    return (pathname === "/" || pathname.startsWith("/threads") || pathname.startsWith("/new") || pathname.startsWith("leaderboards")) && !user;
   };
 
   if (shouldRedirectToLogin(pathname, user)) {

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import useInput from "@/hooks/useInput";
-import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import { asyncSetAuthUser } from "@/states/authUser/action";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useCookies } from "react-cookie";
 import AlertSuccess from "@/components/common/AlertSuccess";
 
 const FormLogin = () => {

@@ -1,8 +1,8 @@
 "use client";
 
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { Box } from "@chakra-ui/react";
 import { redirect } from "next/navigation";
+import { Box } from "@chakra-ui/react";
+import { useAppSelector } from "@/hooks/useAppSelector";
 
 type AuthPageWrapperProps = {
   children: React.ReactNode;

@@ -1,10 +1,10 @@
-import { timeAgo } from "@/utils/common";
-import { Avatar, Badge, Box, Flex, HStack, Heading, Icon, Text } from "@chakra-ui/react";
 import { LiaCommentAlt } from "react-icons/lia";
+import { Avatar, Badge, Box, Flex, HStack, Heading, Icon, Text } from "@chakra-ui/react";
+import { timeAgo } from "@/utils/common";
 import UpVoteButton from "@/components/common/UpVoteButton";
 import DownVoteButton from "@/components/common/DownVoteButton";
 
-const DetailThread = ({ id, title, category, body, owner, createdAt, downVotesBy, upVotesBy, comments }: DetailThread) => {
+const DetailThread = ({ id, title, category, body, owner, createdAt, comments }: DetailThread) => {
   return (
     <Box bg="gray.700" w="full" maxW="container.md" rounded="2xl" p="5">
       <Heading size="md" mb="3">

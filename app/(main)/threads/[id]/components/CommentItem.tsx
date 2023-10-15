@@ -1,9 +1,9 @@
 import { Avatar, Flex, Grid, GridItem, HStack, Stack, Text } from "@chakra-ui/react";
 import { timeAgo } from "@/utils/common";
-import DownVoteButton from "@/components/common/DownVoteButton";
-import UpVoteButton from "@/components/common/UpVoteButton";
+import UpVoteCommentButton from "@/components/common/UpVoteCommentButton";
+import DownVoteCommentButton from "@/components/common/DownVoteCommentButton";
 
-const CommentItem = ({ content, createdAt, downVotesBy, upVotesBy, owner }: CommentThread) => {
+const CommentItem = ({ id, content, createdAt, owner }: CommentThread) => {
   return (
     <Grid templateColumns="min-content 1fr" gap="3" borderBottom="1px" borderBottomColor="whiteAlpha.200" pb="6">
       <GridItem py="1">
@@ -21,8 +21,8 @@ const CommentItem = ({ content, createdAt, downVotesBy, upVotesBy, owner }: Comm
           </Flex>
           <Text mt="3" dangerouslySetInnerHTML={{ __html: content }}></Text>
           <HStack mt="3">
-            <UpVoteButton />
-            <DownVoteButton />
+            <UpVoteCommentButton commentId={id} />
+            <DownVoteCommentButton commentId={id} />
           </HStack>
         </Stack>
       </GridItem>

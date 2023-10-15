@@ -1,13 +1,12 @@
 "use client";
 
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
-import { asyncUnsetAuthUser } from "@/states/authUser/action";
-import { Link } from "@chakra-ui/next-js";
-import { Avatar, Box, Container, Flex, HStack, Text, IconButton, Icon, Center } from "@chakra-ui/react";
-import { Federant } from "next/font/google";
 import { LuLogOut } from "react-icons/lu";
 import { MdOutlineLeaderboard } from "react-icons/md";
+import { Link } from "@chakra-ui/next-js";
+import { Avatar, Box, Container, Flex, HStack, Text, IconButton, Icon, Center } from "@chakra-ui/react";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { asyncUnsetAuthUser } from "@/states/authUser/action";
 
 const Header = () => {
   const authUser: User = useAppSelector((states) => states.authUser);

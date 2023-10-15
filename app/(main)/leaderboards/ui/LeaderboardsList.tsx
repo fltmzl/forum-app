@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect } from "react";
 import { Stack } from "@chakra-ui/react";
 import LeaderboardItem from "../components/LeaderboardItem";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useEffect } from "react";
 import { asyncReceiveLeaderboards } from "@/states/leaderboards/action";
 
 const LeaderboardsList = () => {

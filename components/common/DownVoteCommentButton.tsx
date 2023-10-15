@@ -2,39 +2,49 @@ import { Flex, IconButton, Text, Tooltip } from "@chakra-ui/react";
 import { BiDislike, BiSolidDislike } from "react-icons/bi";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { asyncDownVoteThread, asyncNeutralVoteThread } from "@/states/threads/action";
+import { asyncDownVoteCommentDetailThread, asyncNeutralVoteCommentDetailThread } from "@/states/detailThread/action";
 
-type IDownVoteButtonProps = {
-  threadId: string;
+type IDownVoteCommentButtonProps = {
+  commentId: string;
 };
 
-const DownVoteButton = ({ threadId }: IDownVoteButtonProps) => {
-  const threads: Thread[] = useAppSelector((states) => states.threads);
+const DownVoteCommentButton = ({ commentId }: IDownVoteCommentButtonProps) => {
+  const thread: DetailThread = useAppSelector((states) => states.detailThread);
   const authUser: User = useAppSelector((states) => states.authUser);
   const dispatch = useAppDispatch();
 
-  const currentThread = threads.find((thread) => thread.id === threadId);
+  const currentComment = thread.comments.find((comment) => comment.id === commentId);
 
   const handleDownVoteThread = () => {
-    dispatch(asyncDownVoteThread(threadId));
+    dispatch(
+      asyncDownVoteCommentDetailThread({
+        commentId,
+        threadId: thread.id,
+      })
+    );
   };
 
   const handleUnDownVoteThread = () => {
-    dispatch(asyncNeutralVoteThread(threadId));
+    dispatch(
+      asyncNeutralVoteCommentDetailThread({
+        commentId,
+        threadId: thread.id,
+      })
+    );
   };
 
   return (
     <Flex alignItems="center">
       <Tooltip label="Down Vote" fontSize="xs" placement="top">
-        {currentThread?.downVotesBy.includes(authUser.id) ? (
+        {currentComment?.downVotesBy.includes(authUser.id) ? (
           <IconButton isRound icon={<BiSolidDislike />} aria-label="Down Vote Thread" bgColor="transparent" fontSize="xl" onClick={handleUnDownVoteThread} textColor="primary.500" />
         ) : (
           <IconButton isRound icon={<BiDislike />} aria-label="Down Vote Thread" bgColor="transparent" fontSize="xl" onClick={handleDownVoteThread} />
         )}
       </Tooltip>
-      <Text fontSize="md">{currentThread?.downVotesBy.length}</Text>
+      <Text fontSize="md">{currentComment?.downVotesBy.length}</Text>
     </Flex>
   );
 };
 
-export default DownVoteButton;
+export default DownVoteCommentButton;

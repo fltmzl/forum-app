@@ -1,12 +1,12 @@
 "use client";
 
-import PrimaryButton from "@/components/common/PrimaryButton";
-import useInput from "@/hooks/useInput";
-import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { asyncRegisterUser } from "@/states/users/action";
 import { useCookies } from "react-cookie";
 import { redirect } from "next/navigation";
+import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
+import PrimaryButton from "@/components/common/PrimaryButton";
+import useInput from "@/hooks/useInput";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { asyncRegisterUser } from "@/states/users/action";
 
 const FormRegister = () => {
   const [username, handleUsername] = useInput();

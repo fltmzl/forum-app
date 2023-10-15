@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Square, useColorMode } from "@chakra-ui/react";
+import { Square, useColorMode } from "@chakra-ui/react";
 import { BsFillSunFill } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 

@@ -10,9 +10,9 @@ const LeaderboardItem = ({ user, score, ranking }: ILeaderboardItemProps) => {
     <Flex bgColor="gray.700" py="3" px="5" justifyContent="space-between" alignItems="center" rounded="xl">
       <HStack spacing="6">
         <Box>
-          {ranking == 1 && <Icon as={PiMedalFill} boxSize={7} color="yellow.400" />}
-          {ranking == 2 && <Icon as={PiMedalFill} boxSize={7} color="gray.400" />}
-          {ranking == 3 && <Icon as={PiMedalFill} boxSize={7} color="yellow.800" />}
+          {Number(ranking) === 1 && <Icon as={PiMedalFill} boxSize={7} color="yellow.400" />}
+          {Number(ranking) === 2 && <Icon as={PiMedalFill} boxSize={7} color="gray.400" />}
+          {Number(ranking) === 3 && <Icon as={PiMedalFill} boxSize={7} color="yellow.800" />}
           {Number(ranking) > 3 && (
             <Text align="center" boxSize={7}>
               {ranking}

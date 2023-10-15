@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { redirect } from "next/navigation";
 import { Box } from "@chakra-ui/react";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { asyncSetIsPreload } from "@/states/isPreload/action";
 import { useAppSelector } from "@/hooks/useAppSelector";
-import { redirect } from "next/navigation";
 
 type MainPageWrapper = {
   children: React.ReactNode;

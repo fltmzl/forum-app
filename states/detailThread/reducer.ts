@@ -17,8 +17,48 @@ const detailThreadReducer = (detailThread: DetailThread | null = null, action: a
     case ActionType.UP_VOTE_COMMENT_DETAIL_THREAD:
       return {
         ...detailThread,
-        comments: // menambah upvote dan downvote
-      }
+        comments: detailThread?.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: [action.payload.userId, ...comment.upVotesBy],
+            };
+          }
+
+          return comment;
+        }),
+      };
+
+    case ActionType.DOWN_VOTE_COMMENT_DETAIL_THREAD:
+      return {
+        ...detailThread,
+        comments: detailThread?.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              downVotesBy: [action.payload.userId, ...comment.downVotesBy],
+            };
+          }
+
+          return comment;
+        }),
+      };
+
+    case ActionType.NEUTRAL_VOTE_COMMENT_DETAIL_THREAD:
+      return {
+        ...detailThread,
+        comments: detailThread?.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: comment.upVotesBy.filter((userId) => userId !== action.payload.userId),
+              downVotesBy: comment.downVotesBy.filter((userId) => userId !== action.payload.userId),
+            };
+          }
+
+          return comment;
+        }),
+      };
     default:
       return detailThread;
   }

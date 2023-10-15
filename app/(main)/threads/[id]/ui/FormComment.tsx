@@ -1,8 +1,8 @@
+import React, { useState } from "react";
+import { Box, Heading, Stack, Textarea } from "@chakra-ui/react";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { asyncAddCommentThread } from "@/states/shared/action";
-import { Box, Heading, Stack, Textarea } from "@chakra-ui/react";
-import React, { useState } from "react";
 
 const FormComment = ({ threadId }: { threadId: string }) => {
   const dispatch = useAppDispatch();
