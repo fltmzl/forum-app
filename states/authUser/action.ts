@@ -1,6 +1,6 @@
+import { Dispatch } from "@reduxjs/toolkit";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import api from "@/utils/api";
-import { Dispatch } from "@reduxjs/toolkit";
 
 const ActionType = {
   SET_AUTH_USER: "SET_AUTH_USER",

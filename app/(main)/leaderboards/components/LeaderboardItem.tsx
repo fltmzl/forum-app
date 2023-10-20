@@ -7,7 +7,7 @@ type ILeaderboardItemProps = {
 
 const LeaderboardItem = ({ user, score, ranking }: ILeaderboardItemProps) => {
   return (
-    <Flex bgColor="gray.700" py="3" px="5" justifyContent="space-between" alignItems="center" rounded="xl">
+    <Flex bg="gray.100" _dark={{ bg: "gray.700" }} py="3" px="5" justifyContent="space-between" alignItems="center" rounded="xl">
       <HStack spacing="6">
         <Box>
           {Number(ranking) === 1 && <Icon as={PiMedalFill} boxSize={7} color="yellow.400" />}

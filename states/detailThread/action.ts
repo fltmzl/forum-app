@@ -1,11 +1,14 @@
-import api from "@/utils/api";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Dispatch } from "@reduxjs/toolkit";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
+import api from "@/utils/api";
 import { RootState } from "..";
 
 const ActionType = {
   RECEIVE_DETAIL_THREAD: "RECEIVE_DETAIL_THREAD",
   CLEAR_DETAIL_THREAD: "CLEAR_DETAIL_THREAD",
+  UP_VOTE_DETAIL_THREAD: "UP_VOTE_DETAIL_THREAD",
+  DOWN_VOTE_DETAIL_THREAD: "DOWN_VOTE_DETAIL_THREAD",
+  NEUTRAL_VOTE_DETAIL_THREAD: "NEUTRAL_VOTE_DETAIL_THREAD",
   ADD_COMMENT_DETAIL_THREAD: "ADD_COMMENT_DETAIL_THREAD",
   UP_VOTE_COMMENT_DETAIL_THREAD: "UP_VOTE_COMMENT_DETAIL_THREAD",
   DOWN_VOTE_COMMENT_DETAIL_THREAD: "DOWN_VOTE_COMMENT_DETAIL_THREAD",
@@ -24,6 +27,33 @@ const receiveDetailThreadActionCreator = (detailThread: DetailThread) => {
 const clearDetailThreadActionCreator = () => {
   return {
     type: ActionType.CLEAR_DETAIL_THREAD,
+  };
+};
+
+const upVoteDetailThreadActionCreator = (userId: string) => {
+  return {
+    type: ActionType.UP_VOTE_DETAIL_THREAD,
+    payload: {
+      userId,
+    },
+  };
+};
+
+const downVoteDetailThreadActionCreator = (userId: string) => {
+  return {
+    type: ActionType.DOWN_VOTE_DETAIL_THREAD,
+    payload: {
+      userId,
+    },
+  };
+};
+
+const neutralVoteDetailThreadActionCreator = (userId: string) => {
+  return {
+    type: ActionType.NEUTRAL_VOTE_DETAIL_THREAD,
+    payload: {
+      userId,
+    },
   };
 };
 
@@ -76,6 +106,59 @@ const asyncReceiveDetailThread = (threadId: string) => {
       dispatch(receiveDetailThreadActionCreator(detailThread));
     } catch (error: any) {
       alert(error.message);
+    }
+
+    dispatch(hideLoading());
+  };
+};
+
+const asyncUpVoteDetailThread = (threadId: string) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
+    const { authUser } = getState();
+    dispatch(showLoading());
+
+    dispatch(upVoteDetailThreadActionCreator(authUser.id));
+
+    try {
+      await api.upVoteThread(threadId);
+    } catch (error: any) {
+      dispatch(neutralVoteDetailThreadActionCreator(authUser.id));
+      console.log(error);
+    }
+
+    dispatch(hideLoading());
+  };
+};
+
+const asyncDownVoteDetailThread = (threadId: string) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
+    const { authUser } = getState();
+    dispatch(showLoading());
+
+    dispatch(downVoteDetailThreadActionCreator(authUser.id));
+
+    try {
+      await api.downVoteThread(threadId);
+    } catch (error: any) {
+      dispatch(neutralVoteDetailThreadActionCreator(authUser.id));
+      console.log(error);
+    }
+
+    dispatch(hideLoading());
+  };
+};
+
+const asyncNeutralVoteDetailThread = (threadId: string) => {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
+    const { authUser } = getState();
+    dispatch(showLoading());
+
+    dispatch(neutralVoteDetailThreadActionCreator(authUser.id));
+
+    try {
+      await api.neutralizeVoteThread(threadId);
+    } catch (error: any) {
+      console.log(error);
     }
 
     dispatch(hideLoading());
@@ -137,9 +220,15 @@ export {
   ActionType,
   receiveDetailThreadActionCreator,
   clearDetailThreadActionCreator,
+  upVoteDetailThreadActionCreator,
+  downVoteDetailThreadActionCreator,
+  neutralVoteDetailThreadActionCreator,
   neutralVoteCommentDetailThreadActionCreator,
-  asyncReceiveDetailThread,
   addCommentDetailThreadActionCreator,
+  asyncReceiveDetailThread,
+  asyncUpVoteDetailThread,
+  asyncDownVoteDetailThread,
+  asyncNeutralVoteDetailThread,
   asyncUpVoteCommentDetailThread,
   asyncDownVoteCommentDetailThread,
   asyncNeutralVoteCommentDetailThread,

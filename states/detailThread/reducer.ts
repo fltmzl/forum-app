@@ -8,6 +8,25 @@ const detailThreadReducer = (detailThread: DetailThread | null = null, action: a
     case ActionType.CLEAR_DETAIL_THREAD:
       return null;
 
+    case ActionType.UP_VOTE_DETAIL_THREAD:
+      return {
+        ...detailThread,
+        upVotesBy: [action.payload.userId, ...detailThread!.upVotesBy],
+      };
+
+    case ActionType.DOWN_VOTE_DETAIL_THREAD:
+      return {
+        ...detailThread,
+        downVotesBy: [action.payload.userId, ...detailThread!.downVotesBy],
+      };
+
+    case ActionType.NEUTRAL_VOTE_DETAIL_THREAD:
+      return {
+        ...detailThread,
+        upVotesBy: detailThread?.upVotesBy.filter((userId) => userId !== action.payload.userId),
+        downVotesBy: detailThread?.downVotesBy.filter((userId) => userId !== action.payload.userId),
+      };
+
     case ActionType.ADD_COMMENT_DETAIL_THREAD:
       return {
         ...detailThread,

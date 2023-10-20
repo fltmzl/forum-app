@@ -7,8 +7,8 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { asyncPopulateThreadsAndUsers } from "@/states/shared/action";
-import ThreadItem from "./ui/ThreadItem";
 import { getCategoriesFromAllThread } from "@/utils/common";
+import ThreadItem from "./ui/ThreadItem";
 import CategoryList from "./ui/CategoryList";
 
 export default function Home() {

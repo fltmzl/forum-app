@@ -19,7 +19,7 @@ const FormComment = ({ threadId }: { threadId: string }) => {
   };
 
   return (
-    <Box rounded="2xl" bgColor="gray.700" p="5">
+    <Box rounded="2xl" bgColor="gray.700" bg="gray.100" _dark={{ bg: "gray.700" }} p="5">
       <Heading fontSize="2xl" mb="7">
         Beri Komentar
       </Heading>

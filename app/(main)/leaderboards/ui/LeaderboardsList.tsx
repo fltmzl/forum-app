@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import { Stack } from "@chakra-ui/react";
-import LeaderboardItem from "../components/LeaderboardItem";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { asyncReceiveLeaderboards } from "@/states/leaderboards/action";
+import LeaderboardItem from "../components/LeaderboardItem";
 
 const LeaderboardsList = () => {
   const leaderboards: Leaderboard[] = useAppSelector((states) => states.leaderboards);

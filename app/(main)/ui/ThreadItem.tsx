@@ -7,15 +7,15 @@ import DownVoteButton from "@/components/common/DownVoteButton";
 
 const ThreadItem = ({ id, title, category, body, owner, createdAt, totalComments }: ThreadItem) => {
   return (
-    <Box mb="5" bg="gray.700" maxW="container.md" rounded="2xl" p="5">
+    <Box mb="5" bg="gray.100" _dark={{ bg: "gray.700" }} maxW="container.md" rounded="2xl" p="5">
       <Heading size="md" mb="3">
-        <Link href={`/threads/${id}`} _hover={{ color: "primary.500" }}>
+        <Link href={`/threads/${id}`} colorScheme="gray" _hover={{ color: "primary.500" }}>
           {title}
         </Link>
       </Heading>
 
       <Flex mb="4">
-        <Badge textTransform="lowercase" variant="subtle" px="3" py="1" rounded="full">
+        <Badge textTransform="lowercase" colorScheme="primary" variant="subtle" px="3" py="1" rounded="full">
           #{category}
         </Badge>
       </Flex>
@@ -29,7 +29,7 @@ const ThreadItem = ({ id, title, category, body, owner, createdAt, totalComments
             <Text fontSize="sm" fontWeight="bold">
               {owner?.name}
             </Text>
-            <Text fontSize="xs" color="gray.400">
+            <Text fontSize="xs" color="gray.600" _dark={{ color: "gray.400" }}>
               {timeAgo(new Date(createdAt))}
             </Text>
           </Flex>

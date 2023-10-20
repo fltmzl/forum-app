@@ -1,6 +1,6 @@
-import api from "@/utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Dispatch } from "@reduxjs/toolkit";
+import api from "@/utils/api";
 import { RootState } from "..";
 
 const ActionType = {

@@ -1,18 +1,18 @@
 import { LiaCommentAlt } from "react-icons/lia";
 import { Avatar, Badge, Box, Flex, HStack, Heading, Icon, Text } from "@chakra-ui/react";
 import { timeAgo } from "@/utils/common";
-import UpVoteButton from "@/components/common/UpVoteButton";
-import DownVoteButton from "@/components/common/DownVoteButton";
+import UpVoteButtonDetailPage from "@/components/common/UpVoteButtonDetailPage";
+import DownVoteButtonDetailPage from "@/components/common/DownVoteButtonDetailPage";
 
-const DetailThread = ({ id, title, category, body, owner, createdAt, comments }: DetailThread) => {
+const DetailThread = ({ title, category, body, owner, createdAt, comments }: DetailThread) => {
   return (
-    <Box bg="gray.700" w="full" maxW="container.md" rounded="2xl" p="5">
+    <Box bg="gray.100" _dark={{ bg: "gray.700" }} w="full" maxW="container.md" rounded="2xl" p="5">
       <Heading size="md" mb="3">
         {title}
       </Heading>
 
       <Flex mb="4">
-        <Badge textTransform="lowercase" variant="subtle" px="3" py="1" rounded="full">
+        <Badge textTransform="lowercase" colorScheme="primary" variant="subtle" px="3" py="1" rounded="full">
           #{category}
         </Badge>
       </Flex>
@@ -33,8 +33,8 @@ const DetailThread = ({ id, title, category, body, owner, createdAt, comments }:
         </HStack>
 
         <HStack spacing="5">
-          <UpVoteButton threadId={id} />
-          <DownVoteButton threadId={id} />
+          <UpVoteButtonDetailPage />
+          <DownVoteButtonDetailPage />
 
           <Flex alignItems="center" gap="2">
             <Icon as={LiaCommentAlt} fontSize="xl" boxSize="6" />

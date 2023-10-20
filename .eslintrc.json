@@ -30,6 +30,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/self-closing-comp": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "no-alert": "off",
+    "import/no-cycle": "off"
   }
 }

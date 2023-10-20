@@ -3,7 +3,7 @@ import CommentItem from "../components/CommentItem";
 
 const CommentsList = ({ comments }: { comments: CommentThread[] }) => {
   return (
-    <Box rounded="2xl" bgColor="gray.700" p="5">
+    <Box rounded="2xl" bg="gray.100" _dark={{ bg: "gray.700" }} p="5">
       <Heading fontSize="2xl" mb="10">
         Komentar
         <span> ({comments.length})</span>
