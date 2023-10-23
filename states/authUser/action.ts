@@ -32,6 +32,7 @@ const asyncSetAuthUser = ({ email, password }: UserLoginParams) => {
 
       const user = await api.getOwnProfile();
       dispatch(setAuthUserActionCreator(user));
+      window.location.href = "/";
     } catch (error: any) {
       alert(error.message);
     }

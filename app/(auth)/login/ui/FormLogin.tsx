@@ -5,14 +5,15 @@ import { useCookies } from "react-cookie";
 import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import useInput from "@/hooks/useInput";
-import { asyncSetAuthUser } from "@/states/authUser/action";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
 import AlertSuccess from "@/components/common/AlertSuccess";
 
-const FormLogin = () => {
+type IFormLoginProps = {
+  login: ({ email, password }: UserLoginParams) => void;
+};
+
+const FormLogin = ({ login }: IFormLoginProps) => {
   const [email, handleEmail] = useInput();
   const [password, handlePassword] = useInput();
-  const dispatch = useAppDispatch();
   const [cookies, , removeCookie] = useCookies(["register-success-message"]);
   const registerSuccessMsg = cookies["register-success-message"];
   const [isClient, setIsClient] = useState(false);
@@ -29,7 +30,7 @@ const FormLogin = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(asyncSetAuthUser({ email, password }));
+    login({ email, password });
   };
 
   return (

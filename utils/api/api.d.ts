@@ -21,11 +21,6 @@ interface ThreadItem extends Omit<Thread, "ownerId"> {
   owner: User | undefined;
 }
 
-interface DetailThread extends Omit<Thread, "ownerId" | "totalComments"> {
-  owner: Owner;
-  comments: CommentThread[];
-}
-
 type Owner = {
   id: string;
   name: string;
@@ -40,6 +35,11 @@ type CommentThread = {
   upVotesBy: string[];
   downVotesBy: string[];
 };
+
+interface DetailThread extends Omit<Thread, "ownerId" | "totalComments"> {
+  owner: Owner;
+  comments: CommentThread[];
+}
 
 interface Vote {
   id: string;

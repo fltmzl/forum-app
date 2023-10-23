@@ -1,10 +1,9 @@
-import api from "@/utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Dispatch } from "@reduxjs/toolkit";
+import api from "@/utils/api";
 import { receiveUserActionCreator } from "../users/action";
 import { addThreadCommentActionCreator, receiveThreadsActionCreator } from "../threads/action";
 import { addCommentDetailThreadActionCreator } from "../detailThread/action";
-import { RootState } from "..";
 
 const asyncPopulateThreadsAndUsers = () => {
   return async (dispatch: Dispatch) => {

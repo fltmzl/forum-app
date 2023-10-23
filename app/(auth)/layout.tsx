@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ColorModeScript, theme } from "@chakra-ui/react";
 import { Providers } from "../Providers";
-import AuthPageWrapper from "./AuthPageWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +17,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Providers>
-          <AuthPageWrapper>{children}</AuthPageWrapper>
+          {/* <AuthPageWrapper>{children}</AuthPageWrapper> */}
+          {children}
         </Providers>
       </body>
     </html>

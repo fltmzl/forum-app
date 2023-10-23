@@ -5,14 +5,15 @@ import { redirect } from "next/navigation";
 import { FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import useInput from "@/hooks/useInput";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { asyncRegisterUser } from "@/states/users/action";
 
-const FormRegister = () => {
+type IFormRegisterProps = {
+  register: ({ email, name, password }: UserRegisterParams) => void;
+};
+
+const FormRegister = ({ register }: IFormRegisterProps) => {
   const [username, handleUsername] = useInput();
   const [email, handleEmail] = useInput();
   const [password, handlePassword] = useInput();
-  const dispatch = useAppDispatch();
   const [cookies] = useCookies(["register-success-message"]);
   const registerSuccessMsg = cookies["register-success-message"];
 
@@ -22,8 +23,7 @@ const FormRegister = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    dispatch(asyncRegisterUser({ email, name: username, password }));
+    register({ email, name: username, password });
   };
 
   return (
@@ -31,7 +31,7 @@ const FormRegister = () => {
       <Stack spacing="6">
         <FormControl>
           <FormLabel>Username</FormLabel>
-          <Input type="text" focusBorderColor="primary.500" size="lg" py="7" placeholder="your name" autoComplete="username" value={username} onChange={handleUsername} isRequired />
+          <Input type="text" focusBorderColor="primary.500" size="lg" py="7" placeholder="Your Name" autoComplete="username" value={username} onChange={handleUsername} isRequired />
         </FormControl>
         <FormControl>
           <FormLabel>Email</FormLabel>

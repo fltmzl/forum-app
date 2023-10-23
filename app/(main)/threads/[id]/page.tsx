@@ -10,6 +10,7 @@ import { asyncReceiveDetailThread, clearDetailThreadActionCreator } from "@/stat
 import DetailThread from "./ui/DetailThread";
 import FormComment from "./ui/FormComment";
 import CommentsList from "./ui/CommentsList";
+import { asyncAddCommentThread } from "@/states/shared/action";
 
 const DetailPage = ({ params }: { params: { id: string } }) => {
   const detailThread: DetailThread = useAppSelector((states) => states.detailThread);
@@ -23,6 +24,10 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
     };
   }, [dispatch, params.id]);
 
+  const addComment = ({ content, threadId }: CreateCommentParams) => {
+    dispatch(asyncAddCommentThread({ content, threadId }));
+  };
+
   if (!detailThread) return null;
 
   return (
@@ -33,7 +38,7 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
           <span>Kembali ke Thread</span>
         </Link>
         <DetailThread {...detailThread} />
-        <FormComment threadId={params.id} />
+        <FormComment threadId={params.id} addComment={addComment} />
         <CommentsList comments={detailThread.comments} />
       </Stack>
     </Container>

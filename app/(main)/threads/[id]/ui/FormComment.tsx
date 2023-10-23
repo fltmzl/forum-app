@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Box, Heading, Stack, Textarea } from "@chakra-ui/react";
 import PrimaryButton from "@/components/common/PrimaryButton";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { asyncAddCommentThread } from "@/states/shared/action";
 
-const FormComment = ({ threadId }: { threadId: string }) => {
-  const dispatch = useAppDispatch();
+type IFormCommentProps = {
+  threadId: string;
+  addComment: ({ content, threadId }: CreateCommentParams) => void;
+};
+
+const FormComment = ({ threadId, addComment }: IFormCommentProps) => {
   const [comment, setComment] = useState("");
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -14,8 +16,8 @@ const FormComment = ({ threadId }: { threadId: string }) => {
 
   const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    dispatch(asyncAddCommentThread({ content: comment, threadId }));
+    addComment({ content: comment, threadId });
+    setComment("");
   };
 
   return (

@@ -1,7 +1,7 @@
-import api from "@/utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { Dispatch } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import api from "@/utils/api";
 
 const ActionType = {
   RECEIVE_USERS: "RECEIVE_USERS",
