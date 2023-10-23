@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type useInputReturn = [input: string, setInput: React.Dispatch<React.SetStateAction<string>>];
+type useInputReturn = [input: string, handleChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void, setInput: React.Dispatch<React.SetStateAction<string>>];
 
 const useInput = (initialState = ""): useInputReturn => {
   const [input, setInput] = useState(initialState);
@@ -11,8 +11,7 @@ const useInput = (initialState = ""): useInputReturn => {
     setInput(e.target.value);
   };
 
-  // return [input, handleChangeInput, setInput];
-  return [input, setInput];
+  return [input, handleChangeInput, setInput];
 };
 
 export default useInput;
