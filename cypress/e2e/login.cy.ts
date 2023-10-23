@@ -43,6 +43,9 @@ describe("Login spec", () => {
       .contains(/^LOGIN$/)
       .click();
 
+    // memastikan user ter redirect ke halaman home
+    cy.url().should("eq", "http://localhost:3000/");
+
     cy.get("a")
       .contains(/^ForumApp$/)
       .should("be.visible");
